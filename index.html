@@ -89,7 +89,7 @@
 </head>
 <body>
   <div class="image-container">
-    <img id="advent-image" class="advent-image" src="images/cover/2025-12-17.jpg" alt="Advent Calendar">
+    <img id="advent-image" class="advent-image" src="" alt="Advent Calendar">
     <div id="status-message" class="status-message">Click to reveal!</div>
   </div>
 
@@ -181,11 +181,48 @@
         return isAvailable;
       }
       
+      // Function to determine which day's image to show
+      function getTodaysImageDate() {
+        const today = getCurrentDate();
+        const todayDate = new Date(today);
+        const currentDay = todayDate.getDate();
+        const currentMonth = todayDate.getMonth() + 1; // 0-based month
+        const currentYear = todayDate.getFullYear();
+        
+        // If it's December 2025 and between 17-24, show that day
+        if (currentYear === 2025 && currentMonth === 12 && currentDay >= 17 && currentDay <= 24) {
+          return `2025-12-${String(currentDay).padStart(2, '0')}`;
+        }
+        
+        // If before Dec 17, show Dec 17
+        if (currentYear === 2025 && currentMonth === 12 && currentDay < 17) {
+          return '2025-12-17';
+        }
+        
+        // If after Dec 24 or different year/month, show Dec 24
+        return '2025-12-24';
+      }
+      
+      // Function to load the correct day's image
+      function loadTodaysImage() {
+        const imageDate = getTodaysImageDate();
+        const coverSrc = `images/cover/${imageDate}.jpg`;
+        
+        console.log('Loading image for date:', imageDate);
+        adventImage.src = coverSrc;
+        
+        return imageDate;
+      }
+      
       // Function to refresh status (useful after setting testDate)
       window.refreshStatus = function() {
         console.log('Refreshing status...');
+        loadTodaysImage(); // Reload the correct image
         checkAvailability();
       };
+      
+      // Load today's image first
+      loadTodaysImage();
       
       // Initial check
       checkAvailability();
