@@ -2,62 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Reveal</title>
+  <title>Click to Reveal</title>
   <style>
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: #f0f0f0;
-      font-family: sans-serif;
-    }
-
-    #wrapper {
-      position: relative;
-      width: 500px; /* adjust to your image width */
-      cursor: pointer;
-    }
-
-    #cover, #image {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
     #cover {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: #000;
-      color: #fff;
-      text-align: center;
-      line-height: 300px; /* adjust for your image height */
-      font-size: 24px;
-      transition: opacity 0.5s;
-      opacity: 1;
+      cursor: pointer;
+      max-width: 100%;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <div id="wrapper">
-    <img id="image" src="2025-12-16.png" alt="Reveal Image">
-    <div id="cover">Click to Reveal</div>
-  </div>
 
-  <script>
-    const wrapper = document.getElementById('wrapper');
-    const cover = document.getElementById('cover');
+<img id="cover" src="images/cover/2025-12-17.png" alt="Cover Image">
 
-    wrapper.addEventListener('click', () => {
-      if (cover.style.opacity === '0') {
-        cover.style.opacity = '1';
-      } else {
-        cover.style.opacity = '0';
-      }
-    });
-  </script>
+<script>
+  const cover = document.getElementById('cover');
+  cover.addEventListener('click', () => {
+    cover.src = 'images/reveal/2025-12-17.png';
+  });
+</script>
+
 </body>
 </html>
