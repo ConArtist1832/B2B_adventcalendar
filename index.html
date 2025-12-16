@@ -1,30 +1,64 @@
-<div id="wrapper">
-  <img id="reveal" src="images/reveal/2025-12-17.png">
-  <img id="cover" src="images/cover/2025-12-17.png">
-</div>
-
-<style>
-  #wrapper { position: relative; }
-  #wrapper img { max-width: 90vw; max-height: 90vh; }
-  #cover {
-    position: absolute;
-    inset: 0;
-    cursor: pointer;
-    transition: opacity 0.6s ease;
-  }
-  #cover.hidden { opacity: 0; pointer-events: none; }
-</style>
-
-<script>
-  const target = '2025-12-17';
-  const today = new Date().toISOString().slice(0,10);
-  const cover = document.getElementById('cover');
-
-  cover.onclick = () => {
-    if (today >= target) {
-      cover.classList.add('hidden');
-    } else {
-      alert('Not yet!');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Reveal</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f0f0f0;
+      font-family: sans-serif;
     }
-  };
-</script>
+
+    #wrapper {
+      position: relative;
+      width: 500px; /* adjust to your image width */
+      cursor: pointer;
+    }
+
+    #cover, #image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    #cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #000;
+      color: #fff;
+      text-align: center;
+      line-height: 300px; /* adjust for your image height */
+      font-size: 24px;
+      transition: opacity 0.5s;
+    }
+
+    #wrapper:hover #cover {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <img id="image" src="2025-12-17.png" alt="Reveal Image">
+    <div id="cover">Hover to Reveal</div>
+  </div>
+
+  <script>
+    // Optional: If you want click to reveal instead of hover
+    /*
+    const wrapper = document.getElementById('wrapper');
+    const cover = document.getElementById('cover');
+    wrapper.addEventListener('click', () => {
+      cover.style.opacity = cover.style.opacity === '0' ? '1' : '0';
+    });
+    */
+  </script>
+</body>
+</html>
