@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Reveal</title>
+  <title>Advent Calendar v2</title>
   <style>
     body {
       display: flex;
@@ -29,7 +29,8 @@
     document.addEventListener('DOMContentLoaded', () => {
       console.log('DOM loaded, script starting...');
       
-      const cover = document.getElementById('cover');
+      // Handle both possible IDs due to caching issues
+      const cover = document.getElementById('cover') || document.getElementById('advent');
       let isRevealed = false;
       
       // Get today's date in YYYY-MM-DD format
