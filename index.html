@@ -2,25 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Click to Reveal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Reveal</title>
   <style>
-    #cover {
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f0f0f0;
+    }
+    img {
       cursor: pointer;
       max-width: 100%;
-      height: auto;
+      max-height: 100%;
+      border: 2px solid #333;
+      border-radius: 8px;
     }
   </style>
 </head>
 <body>
+  <!-- Cover image -->
+  <img id="cover" src="images/cover/2025-12-17.png" alt="Cover Image">
 
-<img id="cover" src="images/cover/2025-12-17.png" alt="Cover Image">
-
-<script>
-  const cover = document.getElementById('cover');
-  cover.addEventListener('click', () => {
-    cover.src = 'images/reveal/2025-12-17.png';
-  });
-</script>
-
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cover = document.getElementById('cover');
+      cover.addEventListener('click', () => {
+        cover.src = 'images/reveal/2025-12-17.png';
+      });
+    });
+  </script>
 </body>
 </html>
