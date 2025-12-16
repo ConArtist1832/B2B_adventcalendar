@@ -27,6 +27,8 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM loaded, script starting...');
+      
       const cover = document.getElementById('cover');
       let isRevealed = false;
       
@@ -36,29 +38,38 @@
         String(today.getMonth() + 1).padStart(2, '0') + '-' + 
         String(today.getDate()).padStart(2, '0');
       
-      // Extract date from current image path
-      const currentSrc = cover.src;
-      const dateMatch = currentSrc.match(/(\d{4}-\d{2}-\d{2})/);
-      const imageDate = dateMatch ? dateMatch[1] : null;
+      // Get the image date from the src attribute
+      const imageSrc = cover.getAttribute('src');
+      console.log('Full image src:', imageSrc);
+      
+      // Extract just the filename part to avoid URL issues
+      const filename = imageSrc.split('/').pop();
+      const imageDate = filename.replace('.png', '');
       
       // Debug logging
       console.log('Today:', todayString);
+      console.log('Image filename:', filename);
       console.log('Image date:', imageDate);
       console.log('Dates match:', imageDate === todayString);
       
-      // Add click listener to entire document
-      document.addEventListener('click', () => {
-        console.log('Click detected!');
+      // Test click listener first
+      document.addEventListener('click', (e) => {
+        console.log('Click detected at:', e.clientX, e.clientY);
+        console.log('Target:', e.target);
+        
         if (!isRevealed && imageDate === todayString) {
           console.log('Revealing image...');
           cover.src = `images/reveal/${imageDate}.png`;
           isRevealed = true;
+          console.log('Image src changed to:', cover.src);
         } else if (!isRevealed && imageDate !== todayString) {
           console.log(`This image can only be revealed on ${imageDate}, but today is ${todayString}`);
         } else if (isRevealed) {
           console.log('Image already revealed');
         }
       });
+      
+      console.log('Event listener added, ready for clicks');
     });
   </script>
 </body>
