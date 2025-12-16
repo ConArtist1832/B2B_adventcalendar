@@ -37,28 +37,27 @@
       line-height: 300px; /* adjust for your image height */
       font-size: 24px;
       transition: opacity 0.5s;
-    }
-
-    #wrapper:hover #cover {
-      opacity: 0;
+      opacity: 1;
     }
   </style>
 </head>
 <body>
   <div id="wrapper">
     <img id="image" src="2025-12-17.png" alt="Reveal Image">
-    <div id="cover">Hover to Reveal</div>
+    <div id="cover">Click to Reveal</div>
   </div>
 
   <script>
-    // Optional: If you want click to reveal instead of hover
-    /*
     const wrapper = document.getElementById('wrapper');
     const cover = document.getElementById('cover');
+
     wrapper.addEventListener('click', () => {
-      cover.style.opacity = cover.style.opacity === '0' ? '1' : '0';
+      if (cover.style.opacity === '0') {
+        cover.style.opacity = '1';
+      } else {
+        cover.style.opacity = '0';
+      }
     });
-    */
   </script>
 </body>
 </html>
