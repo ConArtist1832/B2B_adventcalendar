@@ -211,7 +211,7 @@
         // Day image
         const dayImage = document.createElement('img');
         dayImage.className = 'day-image';
-        dayImage.src = `images/cover/${dayData.date}.png`;
+        dayImage.src = `images/cover/${dayData.date}.jpg`;
         dayImage.alt = `Day ${dayData.day}`;
         dayImage.dataset.date = dayData.date;
         
@@ -252,7 +252,7 @@
             createConfetti(true);
             
             // Fade and reveal image
-            revealImage(dayImage, `images/reveal/${dayData.date}.png`, () => {
+            revealImage(dayImage, `images/reveal/${dayData.date}.jpg`, () => {
               dayImage.classList.add('revealed');
               dayStatus.textContent = 'Revealed! 🎉';
               dayData.revealed = true;
